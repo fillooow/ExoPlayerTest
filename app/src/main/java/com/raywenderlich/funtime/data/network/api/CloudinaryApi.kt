@@ -28,6 +28,6 @@ import retrofit2.http.GET
 
 interface CloudinaryApi {
 
-  @GET("demo/video/list/samples.json")
-  fun fetchVideos(): Single<ApiResponse>
+    @GET("demo/video/list/samples.json")
+    fun fetchVideos(): Single<ApiResponse>
 }

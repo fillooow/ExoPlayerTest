@@ -34,35 +34,41 @@ import java.lang.ref.WeakReference
 
 class MainPresenter(view: MainContract.View) : MainContract.Presenter {
 
-  private val view = WeakReference<MainContract.View>(view)
-  private val disposables = CompositeDisposable()
+    private val view = WeakReference<MainContract.View>(view)
+    private val disposables = CompositeDisposable()
 
-  override fun fetchSampleVideos() {
-    disposables.add(
-        VideosService.fetchVideos()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { apiResponse -> onVideosFetchedSuccessfully(apiResponse) },
-                { throwable -> onVideosFetchError(throwable) }
-            ))
-  }
+    override fun fetchSampleVideos() {
 
-  override fun showVideoScreen(videoUrl: String) {
-    val intent = Intent((view.get() as Activity), VideoViewActivity::class.java)
-    intent.putExtra(VideoViewActivity.VIDEO_URL_EXTRA, videoUrl)
-    (view.get() as Activity).startActivity(intent)
-  }
+        disposables.add(
 
-  override fun deactivate() {
-    disposables.clear()
-  }
+                VideosService.fetchVideos()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                { apiResponse -> onVideosFetchedSuccessfully(apiResponse) },
+                                { throwable -> onVideosFetchError(throwable) }
+                        ))
+    }
 
-  private fun onVideosFetchedSuccessfully(videoData: ApiResponse?) {
-    view.get()?.renderVideos(videoData?.resources!!)
-  }
+    override fun showVideoScreen(videoUrl: String) {
 
-  private fun onVideosFetchError(throwable: Throwable) {
-    view.get()?.showErrorMessage()
-  }
+        val intent = Intent((view.get() as Activity), VideoViewActivity::class.java)
+        intent.putExtra(VideoViewActivity.VIDEO_URL_EXTRA, videoUrl)
+        (view.get() as Activity).startActivity(intent)
+    }
+
+    override fun deactivate() {
+
+        disposables.clear()
+    }
+
+    private fun onVideosFetchedSuccessfully(videoData: ApiResponse?) {
+
+        view.get()?.renderVideos(videoData?.resources!!)
+    }
+
+    private fun onVideosFetchError(throwable: Throwable) {
+
+        view.get()?.showErrorMessage()
+    }
 }

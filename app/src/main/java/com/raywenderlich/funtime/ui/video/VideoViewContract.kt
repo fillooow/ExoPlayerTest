@@ -24,10 +24,10 @@ package com.raywenderlich.funtime.ui.video
 
 interface VideoViewContract {
 
-  interface Presenter {
+    interface Presenter {
 
-    fun deactivate()
-  }
+        fun deactivate()
+    }
 
-  interface View
+    interface View
 }

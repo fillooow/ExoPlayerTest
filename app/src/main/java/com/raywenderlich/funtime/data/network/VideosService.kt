@@ -30,15 +30,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object VideosService {
 
-  private const val CLOUDINARY_BASE_URL = "https://res.cloudinary.com/"
+    private const val CLOUDINARY_BASE_URL = "https://res.cloudinary.com/"
 
-  fun fetchVideos() = createCloudinaryVideoService().fetchVideos()
+    fun fetchVideos() = createCloudinaryVideoService().fetchVideos()
 
-  private fun createRetrofitInstance() = Retrofit.Builder()
-      .baseUrl(CLOUDINARY_BASE_URL)
-      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-      .addConverterFactory(GsonConverterFactory.create())
-      .build()
+    private fun createRetrofitInstance() = Retrofit.Builder()
+            .baseUrl(CLOUDINARY_BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-  private fun createCloudinaryVideoService() = createRetrofitInstance().create(CloudinaryApi::class.java)
+    private fun createCloudinaryVideoService() = createRetrofitInstance().create(CloudinaryApi::class.java)
 }

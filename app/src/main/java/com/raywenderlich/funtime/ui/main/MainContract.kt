@@ -26,19 +26,19 @@ import com.raywenderlich.funtime.data.network.model.ApiVideo
 
 interface MainContract {
 
-  interface Presenter {
+    interface Presenter {
 
-    fun fetchSampleVideos()
+        fun fetchSampleVideos()
 
-    fun deactivate()
+        fun deactivate()
 
-    fun showVideoScreen(videoUrl: String)
-  }
+        fun showVideoScreen(videoUrl: String)
+    }
 
-  interface View {
+    interface View {
 
-    fun renderVideos(videos: List<ApiVideo>)
+        fun renderVideos(videos: List<ApiVideo>)
 
-    fun showErrorMessage()
-  }
+        fun showErrorMessage()
+    }
 }

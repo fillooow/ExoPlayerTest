@@ -28,26 +28,29 @@ import com.raywenderlich.funtime.R
 
 class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
 
-  companion object {
-    const val VIDEO_URL_EXTRA = "video_url_extra"
-  }
+    companion object {
+        const val VIDEO_URL_EXTRA = "video_url_extra"
+    }
 
-  private lateinit var presenter: VideoViewContract.Presenter
+    private lateinit var presenter: VideoViewContract.Presenter
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_video_view)
-    init()
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
 
-  override fun onDestroy() {
-    super.onDestroy()
-    presenter.deactivate()
-  }
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_video_view)
+        init()
+    }
 
-  private fun init() {
-    presenter = VideoViewPresenter(this)
+    override fun onDestroy() {
 
-    val videoUrl = intent.getStringExtra(VIDEO_URL_EXTRA)
-  }
+        super.onDestroy()
+        presenter.deactivate()
+    }
+
+    private fun init() {
+
+        presenter = VideoViewPresenter(this)
+
+        val videoUrl = intent.getStringExtra(VIDEO_URL_EXTRA)
+    }
 }

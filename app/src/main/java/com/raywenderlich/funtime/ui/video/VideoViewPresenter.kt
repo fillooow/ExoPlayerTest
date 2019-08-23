@@ -26,8 +26,8 @@ import java.lang.ref.WeakReference
 
 class VideoViewPresenter(videoViewView: VideoViewContract.View) : VideoViewContract.Presenter {
 
-  private val view = WeakReference(videoViewView)
+    private val view = WeakReference(videoViewView)
 
-  override fun deactivate() {
-  }
+    override fun deactivate() {
+    }
 }
