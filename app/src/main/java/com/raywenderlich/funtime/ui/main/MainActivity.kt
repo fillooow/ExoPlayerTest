@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     private lateinit var videosAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -81,31 +82,38 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     private fun initializeRecyclerView() {
+
         videosList.layoutManager = LinearLayoutManager(this)
         videosList.setHasFixedSize(true)
 
         videosAdapter = MainAdapter()
         videosAdapter.onItemClick().subscribe(this::onVideoItemClick)
+
         videosList.adapter = videosAdapter
     }
 
     private fun onVideoItemClick(video: ApiVideo) {
+
         presenter.showVideoScreen(createVideoUrl(video))
     }
 
     private fun showLoadingIndicator() {
+
         progressBar.visibility = View.VISIBLE
     }
 
     private fun hideLoadingIndicator() {
+
         progressBar.visibility = View.GONE
     }
 
     private fun hideEmptyView() {
+
         emptyText.visibility = View.GONE
     }
 
     private fun showEmptyView() {
+
         emptyText.visibility = View.VISIBLE
     }
 
