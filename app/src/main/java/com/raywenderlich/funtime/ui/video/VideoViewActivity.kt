@@ -29,6 +29,7 @@ import com.raywenderlich.funtime.R
 class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
 
     companion object {
+
         const val VIDEO_URL_EXTRA = "video_url_extra"
     }
 
