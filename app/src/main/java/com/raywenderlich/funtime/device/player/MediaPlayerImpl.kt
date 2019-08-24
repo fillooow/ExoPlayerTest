@@ -58,6 +58,13 @@ class MediaPlayerImpl : MediaPlayer {
         return exoPlayer
     }
 
+
+    override fun releasePlayer() {
+
+        exoPlayer.stop()
+        exoPlayer.release()
+    }
+
     private fun initializePlayer() {
 
         // Render media from some stream

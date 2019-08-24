@@ -22,12 +22,21 @@
 
 package com.raywenderlich.funtime.ui.video
 
+import com.raywenderlich.funtime.device.player.MediaPlayerImpl
 import java.lang.ref.WeakReference
 
 class VideoViewPresenter(videoViewView: VideoViewContract.View) : VideoViewContract.Presenter {
+
+    private val mediaPlayer = MediaPlayerImpl()
 
     private val view = WeakReference(videoViewView)
 
     override fun deactivate() {
     }
+
+    override fun getPlayer() = mediaPlayer
+
+    override fun play(url: String) = mediaPlayer.play(url)
+
+    override fun releasePlayer() = mediaPlayer.releasePlayer()
 }

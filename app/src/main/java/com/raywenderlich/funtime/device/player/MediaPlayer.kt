@@ -8,4 +8,6 @@ interface MediaPlayer {
     fun play(url: String)
 
     fun getPlayerImpl(context: Context): ExoPlayer
+
+    fun releasePlayer()
 }

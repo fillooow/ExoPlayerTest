@@ -22,6 +22,7 @@
 
 package com.raywenderlich.funtime.ui.video
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.google.android.exoplayer2.ui.PlayerView
@@ -45,6 +46,13 @@ class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
         init()
     }
 
+    override fun onStop() {
+        super.onStop()
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N){
+
+            presenter.releasePlayer()
+        }
+    }
     override fun onDestroy() {
 
         super.onDestroy()
@@ -58,5 +66,9 @@ class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
         val videoUrl = intent.getStringExtra(VIDEO_URL_EXTRA)
 
         videoView = findViewById(R.id.ep_video_view)
+
+        videoView.player = presenter.getPlayer().getPlayerImpl(this)
+
+        presenter.play(videoUrl)
     }
 }

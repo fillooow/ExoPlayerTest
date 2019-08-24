@@ -22,11 +22,19 @@
 
 package com.raywenderlich.funtime.ui.video
 
+import com.raywenderlich.funtime.device.player.MediaPlayer
+
 interface VideoViewContract {
 
     interface Presenter {
 
         fun deactivate()
+
+        fun getPlayer(): MediaPlayer
+
+        fun play(url: String)
+
+        fun releasePlayer()
     }
 
     interface View
