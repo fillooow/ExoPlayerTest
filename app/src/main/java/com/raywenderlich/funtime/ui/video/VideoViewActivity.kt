@@ -24,6 +24,7 @@ package com.raywenderlich.funtime.ui.video
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.google.android.exoplayer2.ui.PlayerView
 import com.raywenderlich.funtime.R
 
 class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
@@ -34,6 +35,8 @@ class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
     }
 
     private lateinit var presenter: VideoViewContract.Presenter
+
+    private lateinit var videoView: PlayerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -53,5 +56,7 @@ class VideoViewActivity : AppCompatActivity(), VideoViewContract.View {
         presenter = VideoViewPresenter(this)
 
         val videoUrl = intent.getStringExtra(VIDEO_URL_EXTRA)
+
+        videoView = findViewById(R.id.ep_video_view)
     }
 }
