@@ -48,6 +48,16 @@ class MediaPlayerImpl : MediaPlayer {
         exoPlayer.playWhenReady = true
     }
 
+
+    override fun getPlayerImpl(context: Context): ExoPlayer {
+
+        this.context = context
+
+        initializePlayer()
+
+        return exoPlayer
+    }
+
     private fun initializePlayer() {
 
         // Render media from some stream
